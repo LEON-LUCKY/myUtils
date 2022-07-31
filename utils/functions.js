@@ -58,7 +58,6 @@
 (function () {
 	let list = [1, 3, 2, 0];
 	function bubbleSort(list = [], order = "DOWN") {
-		
 		for (let i = 0; i < list.length; i++) {
 			for (let p = i + 1; p < list.length; p++) {
 				let diff1, diff2;
@@ -82,5 +81,37 @@
 		}
 		return list;
 	}
-	console.log(bubbleSort(list));
+	// console.log(bubbleSort(list));
+})();
+(function () {
+	const list = ["A", "B", "C", "A", "B", "D", "A", "E", "F", "G", "D", "A", "C"];
+	const list2 = [
+		{ name: "A", age: 11 },
+		{ name: "B", age: 20 },
+		{ name: "C", age: 33 },
+		{ name: "A", age: 20 },
+		{ name: "C", age: 11 },
+		{ name: "D", age: null },
+		{ name: "E", age: undefined },
+	];
+	const res = list.reduce((acc, cur) => {
+		if (!acc[cur]) {
+			acc[cur] = 0;
+		}
+		acc[cur]++;
+		return acc;
+	}, {});
+	// console.log(res);
+	const res2 = list2.reduce((acc, cur) => {
+		if (!acc[cur.name]) {
+			acc[cur.name] = {
+				amount: 0,
+				vlaue: [],
+			};
+		}
+		acc[cur.name]["amount"]++;
+		acc[cur.name]["vlaue"].push(cur);
+		return acc;
+	}, {});
+	// console.log(JSON.stringify(res2,'',2));
 })();
