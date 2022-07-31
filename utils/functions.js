@@ -141,3 +141,23 @@
 	}
 	// console.log(uuid(10));
 })();
+(function () {
+	// 随机RGB颜色值
+	function Color() {
+		this.r = Math.floor(Math.random() * 255);
+		this.g = Math.floor(Math.random() * 255);
+		this.b = Math.floor(Math.random() * 255);
+		this.color = "rgba(" + this.r + "," + this.g + "," + this.b + ",0.8)";
+	}
+	// console.log(new Color().color);
+	// 生成十六进制的颜色值
+	function getRandomColor() {
+		return "#" + Math.floor(Math.random() * 16777215).toString(16);
+	}
+	// Array.from({length: 10}).map(() => {console.log(getRandomColor());})
+	function Color2() {
+		this.colorAngle = Math.floor(Math.random() * 360);
+		this.color = "hsla(" + this.colorAngle + ",100%,50%,1)";
+	}
+	// console.log(new Color2().color);
+})();
