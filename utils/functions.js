@@ -39,6 +39,27 @@
 	}
 })();
 (function () {
+	// 目标数组和过滤条件数组中元素是 Object 类型时的过滤方法
+	const list = [
+		{
+			name: "A",
+		},
+		{
+			name: "B",
+		},
+		{
+			name: "C",
+		},
+		{
+			name: "D",
+		},
+	];
+	const filter = [{ name: "A" }, { name: "D" }];
+
+	const res = list.filter(item => filter.find(filt => filt.name === item.name));
+	console.log(res);
+})();
+(function () {
 	const arr = ["", "A", "B", "C", 0, false, undefined, null, NaN];
 	// 过滤 Boolean 类型的值
 	const res = arr.filter(Boolean);
