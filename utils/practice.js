@@ -75,12 +75,12 @@
 			let fruit = person[i].fruit[p];
 			if (fruit === "香蕉") {
 				personName = person[i].name;
-				console.log(personName);
+				// console.log(personName);
 				break loop1;
 			}
 		}
 	}
-	console.log("外层输出：", personName);
+	// console.log("外层输出：", personName);
 })();
 // 生成树状结构
 (function () {
@@ -128,5 +128,59 @@
 			result.push(item);
 		}
 	});
-	console.log(JSON.stringify(result, "", 2));
+	// console.log(JSON.stringify(result, "", 2));
 })();
+// 随机生成树状结构
+(function (leng) {
+	function uuid(len, radix) {
+		const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
+		let uuid = [],
+			i;
+		radix = radix || chars.length;
+
+		if (len) {
+			for (i = 0; i < len; i++) uuid[i] = chars[0 | (Math.random() * radix)];
+		} else {
+			let r;
+
+			uuid[8] = uuid[13] = uuid[18] = uuid[23] = "-";
+			uuid[14] = "4";
+
+			for (i = 0; i < 36; i++) {
+				if (!uuid[i]) {
+					r = 0 | (Math.random() * 16);
+					uuid[i] = chars[i == 19 ? (r & 0x3) | 0x8 : r];
+				}
+			}
+		}
+		return uuid.join("");
+	}
+	function getRandomIntInclusive(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值
+	}
+	const list = [];
+	for (let i = 0; i < leng; i++) {
+		list.push({
+			id: i,
+			name: uuid(5),
+			parentId: i + getRandomIntInclusive(1, Math.floor(leng / 10)),
+		});
+	}
+	const result = [];
+	const maps = {};
+	list.forEach(item => {
+		maps[item.id] = item;
+	});
+	list.forEach(item => {
+		const parent = maps[item.parentId];
+		if (parent) {
+			parent.children = parent.children || [];
+			parent.children.push(item);
+		} else {
+			result.push(item);
+		}
+	});
+	console.log(JSON.stringify(result, "", 2));
+})(10);
