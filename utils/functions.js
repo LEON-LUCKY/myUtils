@@ -57,7 +57,7 @@
 	const filter = [{ name: "A" }, { name: "D" }];
 
 	const res = list.filter(item => filter.find(filt => filt.name === item.name));
-	console.log(res);
+	// console.log(res);
 })();
 (function () {
 	const arr = ["", "A", "B", "C", 0, false, undefined, null, NaN];
@@ -181,4 +181,43 @@
 		this.color = "hsla(" + this.colorAngle + ",100%,50%,1)";
 	}
 	// console.log(new Color2().color);
+})();
+(function () {
+	// 交换两个元素的位置
+	const list = ["A", "B", "C", "D", "E"];
+	function swapArr(arr = [], index1, index2) {
+		arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+		return arr;
+	}
+	// console.log(swapArr(list, 1, 2));
+	// 元素置顶
+	function toFirst(list = [], index) {
+		if (index >= list.length) return;
+		if (index !== 0) {
+			list.unshift(list.splice(index, 1)[0]);
+			return list;
+		}
+	}
+	// console.log(toFirst(list, 2));
+	// UP 上移动一格
+	function upGo(list = [], index) {
+		if (index >= list.length) return;
+		if (index !== 0) {
+			list[index] = list.splice(index - 1, 1, list[index])[0];
+		} else {
+			list.push(list.shift());
+		}
+		return list;
+	}
+	// down 下移动一格
+	function downGo(list = [], index) {
+		if (index >= list.length) return;
+		if (index !== list.length - 1) {
+			list[index] = list.splice(index + 1, 1, list[index])[0];
+		} else {
+			list.unshift(list.splice(index, 1)[0]);
+		}
+		return list;
+	}
+	// console.log(upGo(list, 5));
 })();
