@@ -1,10 +1,11 @@
+//*按 Key 分类为数组 && 去重
 (function () {
 	let list = [
 		{ name: "A", age: 11 },
 		{ name: "B", age: 20 },
-		{ name: "C", age: 33 },
+		{ name: "C", age: 11 },
 		{ name: "B", age: 20 },
-		{ name: "A", age: 11 },
+		{ name: "A", age: 11 }
 	];
 
 	/**
@@ -23,7 +24,7 @@
 			return acc;
 		}, {});
 	}
-
+	// console.log(classificationHandler(list, "age"));
 	// 数组中元素是 Object 类型时的去重方法
 	function notRepetitHandler(list = [], key = "") {
 		return list.reduce((acc, cur) => {
@@ -37,28 +38,31 @@
 			return acc;
 		}, []);
 	}
+	console.log(notRepetitHandler(list, "age"));
 })();
+//*过滤条件数组中元素是 Object 类型时的过滤方法
 (function () {
 	// 目标数组和过滤条件数组中元素是 Object 类型时的过滤方法
 	const list = [
 		{
-			name: "A",
+			name: "A"
 		},
 		{
-			name: "B",
+			name: "B"
 		},
 		{
-			name: "C",
+			name: "C"
 		},
 		{
-			name: "D",
-		},
+			name: "D"
+		}
 	];
 	const filter = [{ name: "A" }, { name: "D" }];
 
 	const res = list.filter(item => filter.find(filt => filt.name === item.name));
 	// console.log(res);
 })();
+//*过滤 Boolean 类型的值
 (function () {
 	const arr = ["", "A", "B", "C", 0, false, undefined, null, NaN];
 	// 过滤 Boolean 类型的值
@@ -71,11 +75,13 @@
 		{ name: "", age: 20 },
 		{ name: "", age: 11 },
 		{ name: "D", age: null },
-		{ name: "E", age: undefined },
+		{ name: "E", age: undefined }
 	];
 
 	const res2 = list.filter(item => item.name && item.age);
+	// console.log(res2);
 })();
+//*冒泡排序
 (function () {
 	let list = [1, 3, 2, 0];
 	function bubbleSort(list = [], order = "DOWN") {
@@ -104,6 +110,7 @@
 	}
 	// console.log(bubbleSort(list));
 })();
+//*查询元素出现次数
 (function () {
 	const list = ["A", "B", "C", "A", "B", "D", "A", "E", "F", "G", "D", "A", "C"];
 	const list2 = [
@@ -113,7 +120,7 @@
 		{ name: "A", age: 20 },
 		{ name: "C", age: 11 },
 		{ name: "D", age: null },
-		{ name: "E", age: undefined },
+		{ name: "E", age: undefined }
 	];
 	const res = list.reduce((acc, cur) => {
 		if (!acc[cur]) {
@@ -127,15 +134,16 @@
 		if (!acc[cur.name]) {
 			acc[cur.name] = {
 				amount: 0,
-				vlaue: [],
+				vlaue: []
 			};
 		}
 		acc[cur.name]["amount"]++;
 		acc[cur.name]["vlaue"].push(cur);
 		return acc;
 	}, {});
-	// console.log(JSON.stringify(res2,'',2));
+	// console.log(JSON.stringify(res2, "", 2));
 })();
+//*生成UUID
 (function () {
 	function uuid(len, radix) {
 		const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
@@ -162,6 +170,7 @@
 	}
 	// console.log(uuid(10));
 })();
+//*随机颜色值
 (function () {
 	// 随机RGB颜色值
 	function Color() {
@@ -182,6 +191,7 @@
 	}
 	// console.log(new Color2().color);
 })();
+//*交换元素位置
 (function () {
 	// 交换两个元素的位置
 	const list = ["A", "B", "C", "D", "E"];
@@ -220,4 +230,150 @@
 		return list;
 	}
 	// console.log(upGo(list, 5));
+})();
+//*深度优先-递归调用-堆栈-后进先出
+(function () {
+	const treeData = [
+		{
+			name: 1,
+			children: [
+				{
+					name: 3,
+					children: [
+						{
+							name: 5,
+							children: [
+								{
+									name: 7
+								},
+								{
+									name: 8
+								}
+							]
+						},
+						{
+							name: 6
+						}
+					]
+				},
+				{
+					name: 4
+				}
+			]
+		},
+		{
+			name: 2,
+			children: [
+				{
+					name: 9
+				},
+				{
+					name: 10
+				}
+			]
+		}
+	];
+	function forTree(arr) {
+		arr.forEach(item => {
+			console.log(item.name);
+			if (item.children && item.children.length) {
+				forTree(item.children);
+			}
+		});
+	}
+	// forTree(treeData);
+})();
+//*广度优先
+(function () {
+	// 遍历-递归调用
+	const treeData2 = [
+		{
+			name: 1,
+			children: [
+				{
+					name: 3,
+					children: [
+						{
+							name: 7,
+							children: [
+								{
+									name: 9
+								},
+								{
+									name: 10
+								}
+							]
+						},
+						{
+							name: 8
+						}
+					]
+				},
+				{
+					name: 4
+				}
+			]
+		},
+		{
+			name: 2,
+			children: [
+				{
+					name: 5
+				},
+				{
+					name: 6
+				}
+			]
+		}
+	];
+	function forTree2(arr) {
+		let temp = [];
+		arr.forEach(item => {
+			console.log(item.name);
+			if (item.children && item.children.length) {
+				temp = temp.concat(item.children);
+			}
+		});
+		if (temp.length) forTree2(temp);
+	}
+	// forTree2(treeData2);
+
+	// 遍历2-队列-先进先出
+	const treeData3 = {
+		name: 1,
+		children: [
+			{
+				name: 2,
+				children: [
+					{
+						name: 4
+					}
+				]
+			},
+			{
+				name: 3,
+				children: [
+					{
+						name: 5
+					},
+					{
+						name: 6
+					}
+				]
+			}
+		]
+	};
+
+	function forTree2Better(arr) {
+		while (arr.length) {
+			let temp = arr.shift();
+			console.log(temp.name);
+			if (temp.children && temp.children.length) {
+				temp.children.forEach(item => {
+					arr.push(item);
+				});
+			}
+		}
+	}
+	// forTree2Better([treeData3]);
 })();
