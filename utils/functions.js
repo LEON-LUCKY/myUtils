@@ -38,7 +38,7 @@
 			return acc;
 		}, []);
 	}
-	console.log(notRepetitHandler(list, "age"));
+	// console.log(notRepetitHandler(list, "age"));
 })();
 //*过滤条件数组中元素是 Object 类型时的过滤方法
 (function () {
@@ -61,6 +61,30 @@
 
 	const res = list.filter(item => filter.find(filt => filt.name === item.name));
 	// console.log(res);
+})();
+//*过滤多对多关系
+(function () {
+	const list = [
+		{
+			name: "A",
+			per: [1, 2, 3]
+		},
+		{
+			name: "B",
+			per: [3, 4, 5]
+		},
+		{
+			name: "C",
+			per: [5, 6, 7]
+		},
+		{
+			name: "D",
+			per: [7, 8, 9]
+		}
+	];
+	const l1 = [4];
+	const res = list.filter(item => item.per.find(p => l1.includes(p)));
+	console.log(res);
 })();
 //*过滤 Boolean 类型的值
 (function () {
@@ -376,4 +400,21 @@
 		}
 	}
 	// forTree2Better([treeData3]);
+})();
+//*给包含项置顶
+(function () {
+	const arr = [
+		{ name: "大雄", age: 6 },
+		{ name: "小夫", age: 55 },
+		{ name: "胖虎", age: 77 },
+		{ name: "静香", age: 88 }
+	];
+	arr.sort((firstEl, secondEl) => {
+		if (["胖虎", "静香"].includes(firstEl.name)) {
+			return -1;
+		} else {
+			return 1;
+		}
+	});
+	// console.log(arr);
 })();

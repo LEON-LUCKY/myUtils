@@ -58,16 +58,16 @@
 	const person = [
 		{
 			name: "李四",
-			fruit: ["苹果", "香蕉"],
+			fruit: ["苹果", "香蕉"]
 		},
 		{
 			name: "张三",
-			fruit: ["苹果", "葡萄"],
+			fruit: ["苹果", "葡萄"]
 		},
 		{
 			name: "王五",
-			fruit: ["香蕉", "芒果"],
-		},
+			fruit: ["香蕉", "芒果"]
+		}
 	];
 	let personName;
 	loop1: for (let i = 0; i < person.length; i++) {
@@ -88,28 +88,28 @@
 		{
 			id: 1,
 			name: "目录1",
-			parentId: 0,
+			parentId: 0
 		},
 		{
 			id: 2,
 			name: "目录2",
-			parentId: 0,
+			parentId: 0
 		},
 		{
 			id: 3,
 			name: "目录1-1",
-			parentId: 1,
+			parentId: 1
 		},
 		{
 			id: 4,
 			name: "目录1-2",
-			parentId: 1,
+			parentId: 1
 		},
 		{
 			id: 5,
 			name: "目录2-1",
-			parentId: 2,
-		},
+			parentId: 2
+		}
 	];
 	const maps = {};
 	const result = [];
@@ -165,7 +165,7 @@
 		list.push({
 			id: i,
 			name: uuid(5),
-			parentId: i + getRandomIntInclusive(1, Math.floor(leng / 10)),
+			parentId: i + getRandomIntInclusive(1, Math.floor(leng / 10))
 		});
 	}
 	const result = [];
@@ -184,3 +184,25 @@
 	});
 	console.log(JSON.stringify(result, "", 2));
 })(10);
+// 对象结构列表去重
+const list = [
+	{
+		color: "#ccc"
+	},
+	{
+		color: "#fff"
+	},
+	{
+		color: "#ccc"
+	},
+	{
+		color: "#fff"
+	}
+];
+const res = list.reduce((acc, cur) => {
+	if (acc.map(item => item.color).indexOf(cur.color) == -1) {
+		acc.push(cur);
+	}
+	return acc;
+}, []);
+console.log(res);
